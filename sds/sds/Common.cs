@@ -45,8 +45,18 @@ namespace sds
         }
 
         public static void HaltOnError() {
-            Console.WriteLine("Confirm error to continue execution: >>");
-            Console.ReadLine();
+
+            string buffer = string.Empty;
+            while(buffer != "Y" && buffer != "N")
+            {
+                Console.WriteLine("Continue after error (Y/N)");
+                buffer = Console.ReadLine().Trim().ToUpper();
+                if (buffer == "N")
+                {
+                    Environment.Exit(99);
+                }
+            }
+
         }
 
         public static bool HasArgument(string argument, string[] args) {

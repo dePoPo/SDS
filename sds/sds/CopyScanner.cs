@@ -39,7 +39,16 @@ namespace sds
             foreach (string s in sourceList) {
                 string sourcePartial = s.Substring(_source.Length);
                 string targetPath = $"{_target}{sourcePartial}";
-                string targetDir = Path.GetDirectoryName(targetPath);
+                string targetDir = string.Empty;
+                try
+                {
+                    targetDir = Path.GetDirectoryName(targetPath);
+                } catch (PathTooLongException ex)
+                {
+                    Console.WriteLine($"Fatal: targetPath too long getting directory for: {targetPath}");
+                    throw ex;
+                }
+
                 //
                 // new files
                 if (!Directory.Exists(targetDir)) {

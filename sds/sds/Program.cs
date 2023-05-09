@@ -139,7 +139,7 @@ namespace sds
                 }
             }
 #if DEBUG
-            Console.Write(">>");
+            Console.Write("debug build. enter to terminate >>");
             Console.ReadLine();
 #endif
         }
